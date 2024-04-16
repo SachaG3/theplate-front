@@ -1,6 +1,8 @@
 import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import "./globals.css";
+import React from "react";
+import {RegistrationProvider} from "@/context/RegistrationContext";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -18,7 +20,9 @@ export default function RootLayout({
         <html lang="fr">
         <body className={"light bg-background"}>
         <main className={"light text-foreground bg-background"}>
-            {children}
+            <RegistrationProvider>
+                {children}
+            </RegistrationProvider>
         </main>
         </body>
         </html>

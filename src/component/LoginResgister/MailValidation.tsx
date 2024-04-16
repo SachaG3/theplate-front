@@ -1,17 +1,17 @@
-'use client'
-
 import {Input} from "@nextui-org/react";
 import React from "react";
 
-function MailValidation({...props}: { placeholder: string }) {
-    const [value, setValue] = React.useState("");
+function MailValidation({value, onChange, placeholder}: {
+    value: string,
+    onChange: (value: string) => void,
+    placeholder: string
+}) {
 
-    const validateEmail = (value: string) => value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+    const validateEmail = (value: string) => value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$/i);
 
     const isInvalid = React.useMemo(() => {
         if (value === "") return false;
-
-        return validateEmail(value) ? false : true;
+        return !validateEmail(value);
     }, [value]);
 
     return (
@@ -19,14 +19,13 @@ function MailValidation({...props}: { placeholder: string }) {
             value={value}
             type="email"
             variant="bordered"
-            placeholder={props.placeholder}
+            placeholder={placeholder}
             isInvalid={isInvalid}
             color={isInvalid ? "danger" : "success"}
-            errorMessage={isInvalid && "Please enter a valid email"}
-            onValueChange={setValue}
+            errorMessage={isInvalid ? "Please enter a valid email" : ""}
+            onChange={e => onChange(e.target.value)}
         />
     );
-
 }
 
 export default MailValidation;

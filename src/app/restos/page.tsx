@@ -9,7 +9,6 @@ export default async function Page() {
 
 
     return (
-
         <>
             <h2>Restaurant</h2>
             <Table>

@@ -1,49 +1,43 @@
-import {Button, Input} from "@nextui-org/react";
 import React from "react";
+import {Button, Input} from "@nextui-org/react";
 
-function RegisterStep1({...props}: { className: string, onNext(): void }) {
+interface Props {
+    userData: { name: string; firstName: string; [key: string]: any };
+    updateUserData: (data: Partial<{ name: string; firstName: string }>) => void;
+    className: string;
+
+    onNext(): void;
+}
+
+const RegisterStep2: React.FC<Props> = ({userData, updateUserData, className, onNext}) => {
     return (
-        <section className={props.className}>
+        <section className={className}>
             <div className="flex-grow flex items-center justify-center p-4">
-                <div className="card w-full max-w-sm ">
+                <div className="card w-full max-w-sm">
                     <div className="flex flex-col items-center p-4">
-                        <h2 className="card-title">Information Personnelles</h2>
-
+                        <h2 className="card-title">Personal Information</h2>
                         <div className="form-control w-full">
                             <label className="label">
-                                <span className="label-text">Enter your email address</span>
+                                <span className="label-text">Enter your name</span>
                             </label>
-                            <Input placeholder={"Nom"}/>
+                            <Input placeholder="Name" value={userData.name}
+                                   onChange={(e) => updateUserData({name: e.target.value})}/>
                         </div>
                         <div className="form-control w-full">
                             <label className="label">
-                                <span className="label-text">Enter your email address</span>
+                                <span className="label-text">Enter your first name</span>
                             </label>
-                            <Input placeholder={"Prénom"}/>
-                        </div>
-                        <div className="form-control w-full">
-                            <label className="label">
-                                <span className="label-text">Enter your email address</span>
-                            </label>
-                            <Input placeholder={"Date de naissance"}/>
-                        </div>
-                        <div className="form-control w-full">
-                            <label className="label">
-                                <span className="label-text">Enter your email address</span>
-                            </label>
-                            <Input placeholder={"Numéro de téléphone"}/>
+                            <Input placeholder="First Name" value={userData.firstName}
+                                   onChange={(e) => updateUserData({firstName: e.target.value})}/>
                         </div>
                         <div className="card w-full max-w-sm mt-2">
-                            <Button className={"w-full"} size={"md"} onClick={props.onNext}>Suivant</Button>
-                        </div>
-                        <div className="flex justify-between w-full py-2">
-                            <a href="/login" className="link link-hover">Se connecter</a>
+                            <Button className={"w-full"} size={"md"} onClick={onNext}>Next</Button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-    )
+    );
 }
 
-export default RegisterStep1;
+export default RegisterStep2;
