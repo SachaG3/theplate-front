@@ -2,7 +2,7 @@ import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import "./globals.css";
 import React from "react";
-import {RegistrationProvider} from "@/context/RegistrationContext";
+import {SessionProvider} from "next-auth/react";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -20,9 +20,9 @@ export default function RootLayout({
         <html lang="fr">
         <body className={"light bg-background"}>
         <main className={"light text-foreground bg-background"}>
-            <RegistrationProvider>
+            <SessionProvider>
                 {children}
-            </RegistrationProvider>
+            </SessionProvider>
         </main>
         </body>
         </html>

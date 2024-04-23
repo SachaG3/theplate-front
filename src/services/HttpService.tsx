@@ -1,21 +1,27 @@
 export default class HttpService {
-    static API_URL = "http://127.0.0.1:8080/api/";
 
-    static async get(url: string) {
-        const response = await fetch(this.API_URL + url);
-        return await response.json();
-    }
 
-    static async post(url: string, data: any) {
-        const response = await fetch(this.API_URL + url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+    /**
+     * Http get request
+     */
 
-            body: JSON.stringify(data)
+    static async get(url: string, headers?: any): Promise<any> {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: headers
         });
         return await response.json();
     }
 
+    /**
+     * Http post request
+     */
+    static async post(url: string, data: any, headers?: any): Promise<any> {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: headers || {"Content-Type": "application/json"},
+            body: JSON.stringify(data)
+        });
+        return await response.json();
+    }
 }

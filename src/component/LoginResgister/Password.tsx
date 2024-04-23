@@ -19,6 +19,7 @@ function Password({placeholder, value, onChange}: PasswordProps) {
             value={value}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
             variant="bordered"
+            name={"password"}
             placeholder={placeholder}
             endContent={
                 <button className="focus:outline-none" type="button" onClick={toggleVisibility}>

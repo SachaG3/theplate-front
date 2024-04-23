@@ -3,9 +3,10 @@ import HttpService from '@/services/HttpService';
 import Link from 'next/link';
 import {Table} from 'react-daisyui';
 import {AwaitedReactNode, JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal} from 'react';
+import {API_URLs} from "@/services/API_URLs";
 
 export default async function Page() {
-    const data = (await HttpService.get("restaurant"))._embedded.restaurant;
+    const data = (await HttpService.get(API_URLs.restos))._embedded.restaurant;
 
 
     return (

@@ -4,10 +4,10 @@ import React from "react";
 function MailValidation({value, onChange, placeholder}: {
     value: string,
     onChange: (value: string) => void,
-    placeholder: string
+    placeholder: string,
 }) {
 
-    const validateEmail = (value: string) => value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$/i);
+    const validateEmail = (value: string) => value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i);
 
     const isInvalid = React.useMemo(() => {
         if (value === "") return false;
@@ -19,6 +19,7 @@ function MailValidation({value, onChange, placeholder}: {
             value={value}
             type="email"
             variant="bordered"
+            name={"email"}
             placeholder={placeholder}
             isInvalid={isInvalid}
             color={isInvalid ? "danger" : "success"}
