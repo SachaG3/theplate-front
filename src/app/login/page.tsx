@@ -25,7 +25,7 @@ export default function Login() {
                         </form>
                         <div className="flex justify-between w-full py-2">
                             <a href="/register" className="link link-hover">S'inscrire</a>
-                            <a href="#" className="link link-hover">Forgot your password?</a>
+                            <a href="#" className="link link-hover">Forgot your password</a>
                         </div>
                     </div>
                 </div>
