@@ -22,7 +22,7 @@ const Register = () => {
         setIsMounted(true);
     }, []);
 
-    const updateUserData = (newData) => {
+    const updateUserData = (newData: { email?: string; name?: string; firstName?: string; password?: string; }) => {
         setUserData(prev => ({...prev, ...newData}));
     };
 
