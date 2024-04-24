@@ -16,7 +16,7 @@ node-build:
       - next.config.js
 
 deploy-production:
-  image: node:16
+  image: node:18
   stage: deploy
   variables:
     HOST: "149.202.94.223"
