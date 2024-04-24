@@ -13,7 +13,6 @@ node-build:
       - .next
       - node_modules
       - package.json
-      - next.config.js
 
 deploy-production:
   image: node:18
