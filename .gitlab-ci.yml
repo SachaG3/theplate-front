@@ -1,0 +1,35 @@
+stages:
+  - build
+  - deploy
+
+node-build:
+  image: node:16
+  stage: build
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - .next
+      - node_modules
+      - package.json
+      - next.config.js
+
+deploy-production:
+  image: node:16
+  stage: deploy
+  variables:
+    HOST: "149.202.94.223"
+    PORT: "7809"
+    USER: "gitlab-ci"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq sshpass
+    - echo "Host= $HOST"
+  script:
+    - sshpass -e scp -o StrictHostKeyChecking=no -P $PORT -r .next $USER@$HOST:/home/$USER/next-app
+    - sshpass -e scp -o StrictHostKeyChecking=no -P $PORT package.json $USER@$HOST:/home/$USER/next-app
+    - sshpass -e scp -o StrictHostKeyChecking=no -P $PORT next.config.js $USER@$HOST:/home/$USER/next-app
+    - sshpass -e ssh -tt -o StrictHostKeyChecking=no -p $PORT $USER@$HOST 'cd /home/$USER/next-app && npm install --production'
+    - sshpass -e ssh -tt -o StrictHostKeyChecking=no -p $PORT $USER@$HOST 'pm2 restart next-app || pm2 start npm --name "next-app" -- run start'
