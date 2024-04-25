@@ -14,6 +14,7 @@ node-build:
       - node_modules
       - package.json
       - next.config.js
+      - .env.local 
 
 deploy-production:
   image: node:18
@@ -30,9 +31,6 @@ deploy-production:
   script:
     - sshpass -V
     - export SSHPASS=$CI_USER_PASS
-    - sshpass -e scp -o StrictHostKeyChecking=no -P $PORT -r .next $USER@$HOST:/home/$USER/next-app
-    - sshpass -e scp -o StrictHostKeyChecking=no -P $PORT package.json $USER@$HOST:/home/$USER/next-app
-    - sshpass -e scp -o StrictHostKeyChecking=no -P $PORT next.config.js $USER@$HOST:/home/$USER/next-app
+    - sshpass -e scp -o StrictHostKeyChecking=no -P $PORT -r .next node_modules package.json next.config.js .env.local $USER@$HOST:/home/$USER/next-app
     - sshpass -e ssh -tt -o StrictHostKeyChecking=no -p $PORT $USER@$HOST 'cd /home/$USER/next-app && npm install --production'
     - sshpass -e ssh -tt -o StrictHostKeyChecking=no -p $PORT $USER@$HOST 'pm2 restart next-app || pm2 start npm --name "next-app" -- run start'
-
