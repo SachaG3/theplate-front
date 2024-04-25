@@ -1,12 +1,19 @@
-export {auth as middleware} from "@/auth"
-import {auth} from "./auth"
+import {NextResponse} from 'next/server';
 
-/*import {NextResponse} from "next/server";
+// Définition du type pour le paramètre request
+type Request = {
+    headers: {
+        get: (name: string) => string | null;
+    };
+};
 
-export default auth((req) => {
-    if (!req.auth) {
-        return NextResponse.redirect(new URL("/login",req.url));
+export function middleware(request: Request) {
+    const trustedHosts = ['localhost:9090', 'srv2-vm-2121.sts-sio-caen.info'];
+    const host = request.headers.get('host');
+
+    if (host && !trustedHosts.includes(host)) {
+        return new Response('Access Denied', {status: 403});
     }
-})
 
- */
+    return NextResponse.next();
+}
