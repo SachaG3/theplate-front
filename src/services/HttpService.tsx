@@ -17,6 +17,7 @@ export default class HttpService {
      * Http post request
      */
     static async post(url: string, data: any, headers?: any): Promise<any> {
+        console.log(data)
         const response = await fetch(url, {
             method: 'POST',
             headers: headers || {"Content-Type": "application/json"},
