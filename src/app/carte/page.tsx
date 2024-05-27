@@ -5,6 +5,7 @@ import "leaflet/dist/leaflet.css";
 import {icon} from "leaflet";
 import HttpService from "@/services/HttpService";
 import Link from "next/link";
+import {API_URLs} from "@/services/API_URLs";
 
 const ICON = icon({
     iconUrl: "utilisateur.png",
@@ -65,7 +66,7 @@ function Page() {
 
         const fetchData = async () => {
             try {
-                const response = await HttpService.get("restaurant?size=12400");
+                const response = await HttpService.get(API_URLs.restaurant);
                 const formattedRestaurants = response._embedded.restaurant.map((item) => ({
                     id: item.id,
                     name: item.name,
