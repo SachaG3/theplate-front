@@ -12,7 +12,7 @@ const CreerTicket = () => {
     const {data: session} = useSession();
     const userId = session?.user?.id;
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         if (!userId) {
             console.error('Aucun utilisateur connecté.');
@@ -20,11 +20,11 @@ const CreerTicket = () => {
         }
 
         try {
-            const newTicket = await HttpService.post(API_URLs.tickets, {
+            const newTicket = await HttpService.post(API_URLs.Message, {
                 title,
                 statut: 0,
                 description,
-                user_id: {id: userId}
+                user: "/api/users/" + userId,
             });
             console.log('Ticket créé:', newTicket);
             setTitle('');

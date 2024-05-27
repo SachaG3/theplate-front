@@ -1,10 +1,13 @@
-const API_URL = "http://127.0.0.1:9090/api/";
+const API_URL = "http://localhost:9090/api/";
 
 export const API_URLs = {
     base: API_URL,
     auth: API_URL + "auth/login",
-    restos: API_URL + "restaurants",
+    restos: API_URL + "restaurant",
     users: API_URL + "users",
     tickets: API_URL + "ticket",
-    restoById: (id: string) => API_URL + "restaurants/" + id,
+    Message: API_URL + "Message",
+    restoById: (id: string) => API_URL + "restaurant/" + id,
+    ticketById: (id: string) => API_URL + "ticket/" + id,
+    findByTicketId: (id: string) => API_URL + "Message/search/findByTicketId?ticketId=" + id,
 }
