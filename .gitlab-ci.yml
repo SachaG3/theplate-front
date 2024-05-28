@@ -35,4 +35,4 @@ deploy-production:
     - sshpass -e scp -o StrictHostKeyChecking=no -P $PORT next.config.js $USER@$HOST:/home/$USER/next-app
     - sshpass -e ssh -tt -o StrictHostKeyChecking=no -p $PORT $USER@$HOST 'sudo chown -R $USER:$USER /home/$USER/next-app'
     - sshpass -e ssh -tt -o StrictHostKeyChecking=no -p $PORT $USER@$HOST 'cd /home/$USER/next-app && npm install --production'
-    - sshpass -e ssh -tt -o StrictHostKeyChecking-no -p $PORT $USER@$HOST 'pm2 restart next-app || pm2 start npm --name "next-app" -- run start'
+    - sshpass -e ssh -tt -o StrictHostKeyChecking=no -p $PORT $USER@$HOST 'pm2 restart next-app || pm2 start npm --name "next-app" -- run start'
