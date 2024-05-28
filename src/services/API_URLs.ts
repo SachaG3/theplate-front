@@ -7,7 +7,8 @@ export const API_URLs = {
     users: API_URL + "users",
     tickets: API_URL + "ticket",
     Message: API_URL + "Message",
-    restoById: (id: string) => API_URL + "restaurant/" + id,
+    restoById: (id: string | undefined) => API_URL + "restaurant/" + id,
     ticketById: (id: string) => API_URL + "ticket/" + id,
     findByTicketId: (id: string) => API_URL + "Message/search/findByTicketId?ticketId=" + id,
+    findTicketByUserId: (id: string) => API_URL + "users/" + id + "/Ticket",
 }

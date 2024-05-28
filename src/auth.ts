@@ -8,7 +8,7 @@ import {jwtDecode} from "jwt-decode";
 export const {handlers, auth, signIn, signOut} = NextAuth({
     secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
     pages: {
-        signIn: '/login2',
+        signIn: '/login',
     },
     callbacks: {
         async session({session, token}) {
