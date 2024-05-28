@@ -19,7 +19,7 @@ const CreateTicket = () => {
         }
 
         try {
-            const newTicket = await HttpService.post(API_URLs.Message, {
+            const newTicket = await HttpService.post(API_URLs.tickets, {
                 title,
                 statut: 0,
                 description,
