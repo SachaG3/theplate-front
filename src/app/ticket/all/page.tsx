@@ -1,4 +1,3 @@
-// src/app/ticket/all/page.tsx
 'use client'
 import React, {useEffect, useState} from "react";
 import HttpService from "@/services/HttpService";
@@ -28,7 +27,7 @@ export default function Page() {
         }
 
         fetchData();
-    }, [status, session]);
+    }, [status, session, router]);
 
     if (status === 'loading') {
         return <div>Loading...</div>;
