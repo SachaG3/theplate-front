@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:9090/api/";
+const API_URL = "http://the-plate-front.sts-sio-caen.info/";
 
 export const API_URLs = {
     base: API_URL,
