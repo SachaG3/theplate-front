@@ -1,9 +1,11 @@
 import HttpService from "@/services/HttpService";
 import {API_URLs} from "@/services/API_URLs";
+import PlatRestaurant from "@/component/restaurant/PlatRestaurant";
 
 
 export default async function Page({params}: { params: { id: string } }) {
     const data = await HttpService.get(API_URLs.restoById(params.id));
+
 
     return (
         <>
@@ -13,8 +15,7 @@ export default async function Page({params}: { params: { id: string } }) {
             <p>Restaurant cité: {data.city}</p>
             <p>Restaurant longitude: {data.longitude}</p>
             <p>Restaurant latitude: {data.latitude}</p>
-
-
+            <PlatRestaurant restaurantId={params.id}></PlatRestaurant>
 
         </>
 
