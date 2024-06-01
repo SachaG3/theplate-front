@@ -1,5 +1,6 @@
+'use client'
 import {useEffect, useState} from 'react';
-import {useRouter} from 'next/router';
+import {useRouter} from 'next/navigation';
 import {Button} from '@nextui-org/react';
 import {signOut} from "@/auth";
 
