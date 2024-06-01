@@ -1,4 +1,3 @@
-// src/app/ticket/user/page.tsx
 'use client';
 import React, {useEffect, useState} from "react";
 import HttpService from "@/services/HttpService";
@@ -11,7 +10,7 @@ import Link from "next/link";
 export default function UserTicketsPage() {
     const [tickets, setTickets] = useState([]);
     const {data: session} = useSession();
-    const userId = session?.user?.email;
+    const userId = session?.user?.id;
     const router = useRouter();
 
     useEffect(() => {
@@ -20,6 +19,7 @@ export default function UserTicketsPage() {
                 try {
                     const response = await HttpService.get(API_URLs.findTicketByUserId(userId));
                     const ticketsData = response?._embedded?.ticket;
+                    console.log("Tickets data:", response);
                     if (ticketsData) {
                         setTickets(ticketsData);
                     }
@@ -35,7 +35,7 @@ export default function UserTicketsPage() {
     if (!Array.isArray(tickets)) {
         return (
             <>
-                <Header returnText={"Accueil"} returnLink={"/"}/>
+                <Header returnText={"Mes ticket"} returnLink={"/"}/>
                 <div className="min-h-screen flex flex-col items-center p-4">
                     <h2 className="text-center text-2xl font-bold mb-4">Tickets de l&apos;utilisateur</h2>
                     <p>Les données reçues ne sont pas valides.</p>
@@ -46,7 +46,7 @@ export default function UserTicketsPage() {
 
     return (
         <div style={{minHeight: "100vh"}}>
-            <Header returnText={"Accueil"} returnLink={"/"}/>
+            <Header returnText={"Mes ticket"} returnLink={"/"}/>
             <div className=" flex flex-col items-center p-4">
                 <div className="w-full max-w-sm">
                     <h2 className="text-center text-2xl font-bold mb-4">Tickets de l&apos;utilisateur</h2>
@@ -58,7 +58,6 @@ export default function UserTicketsPage() {
                                 </Link>
                             </li>
                         ))}
-                        <p>{userId}</p>
                     </ul>
                 </div>
             </div>

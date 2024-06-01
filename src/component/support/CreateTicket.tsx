@@ -4,12 +4,15 @@ import HttpService from "@/services/HttpService";
 import {API_URLs} from "@/services/API_URLs";
 import {useSession} from "next-auth/react";
 import {Button, Input, Textarea} from '@nextui-org/react';
+import {useRouter} from "next/navigation";
+
 
 const CreateTicket = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const {data: session} = useSession();
     const userId = session?.user?.id;
+    const router = useRouter();
 
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
@@ -26,8 +29,7 @@ const CreateTicket = () => {
                 user: "/api/users/" + userId,
             });
             console.log('Ticket créé:', newTicket);
-            setTitle('');
-            setDescription('');
+            router.push('/ticket/user');
         } catch (error) {
             console.error('Erreur lors de la création du ticket:', error);
         }

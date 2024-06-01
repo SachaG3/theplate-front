@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {Link, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow} from "@nextui-org/react";
 import HttpService from "@/services/HttpService";
 import {API_URLs} from "@/services/API_URLs";
+import Header from "@/component/Header";
 
 const columns = [
     {
@@ -45,8 +46,8 @@ export default function App() {
     };
 
     return (
-        <>
-            <h2>Restaurant</h2>
+        <div style={{minHeight: "100vh"}}>
+            <Header returnText={"Restaurant"} returnLink={"/"}/>
             {error ? (
                 <p>Error: {error}</p>
             ) : (
@@ -73,6 +74,6 @@ export default function App() {
                     </TableBody>
                 </Table>
             )}
-        </>
+        </div>
     );
 }
