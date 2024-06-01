@@ -1,4 +1,3 @@
-// UserInfo.tsx
 'use client'
 import {useEffect, useState} from "react";
 import {Button, Input} from "@nextui-org/react";
@@ -50,7 +49,7 @@ export default function UserInfo({userId}: { userId: string }) {
     const [address, setAddress] = useState<string | null>(null);
 
     useEffect(() => {
-        if (userId) {
+        if (typeof window !== 'undefined' && userId) { // Vérification côté client
             fetchUserInfo(userId).then(data => {
                 setUserInfo(data);
                 setEditedUserInfo(data);
@@ -84,7 +83,7 @@ export default function UserInfo({userId}: { userId: string }) {
     }
 
     return (
-        <div className=" flex flex-col items-center justify-center p-4">
+        <div className="flex flex-col items-center justify-center p-4">
             <div className="card w-full max-w-sm p-4 shadow-lg">
                 {isEditing ? (
                     <>
