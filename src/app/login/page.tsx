@@ -4,6 +4,7 @@ import RestosSvg from "@/component/svg/RestosSvg";
 import Header from "@/component/Header";
 import {signIn} from "@/auth";
 import LoginForm from "@/component/LoginResgister/loginForm";
+import Logout from "@/component/UserLog/logout";
 
 
 export default function Login() {
@@ -12,6 +13,7 @@ export default function Login() {
     return (
         <div className="min-h-screen flex flex-col" style={{minHeight: "100vh"}}>
             <Header returnText={"Login"} returnLink={"/"}/>
+            <Logout></Logout>
             <div className="flex-grow flex items-center justify-center p-4">
                 <div className="card w-full max-w-sm">
                     <div className="flex flex-col items-center p-4">
