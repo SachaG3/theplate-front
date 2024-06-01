@@ -6,7 +6,11 @@ function Logout() {
     const {data: session} = useSession();
 
     if (session) {
-        return <Button onClick={() => signOut()}>Déconnexion</Button>;
+        return (
+            <div className="flex justify-center mt-4">
+                <Button onClick={() => signOut()}>Déconnexion</Button>
+            </div>
+        );
     }
 
     return null;

@@ -6,6 +6,7 @@ export const API_URLs = {
     restos: API_URL + "restaurant",
 
     users: API_URL + "users",
+    findByUserId: (id: string) => API_URL + "users/" + id,
     tickets: API_URL + "ticket",
     Message: API_URL + "Message",
     ticketById: (id: string) => API_URL + "ticket/" + id,

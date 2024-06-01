@@ -4,6 +4,7 @@ import {Link, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow} f
 import HttpService from "@/services/HttpService";
 import {API_URLs} from "@/services/API_URLs";
 import Header from "@/component/Header";
+import Carte from "@/component/restaurant/Carte";
 
 const columns = [
     {
@@ -74,6 +75,7 @@ export default function App() {
                     </TableBody>
                 </Table>
             )}
+            <Carte></Carte>
         </div>
     );
 }

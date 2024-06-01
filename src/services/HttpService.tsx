@@ -42,4 +42,23 @@ export default class HttpService {
             throw error;
         }
     }
+
+    static async put(url: string, data: any, headers?: any): Promise<any> {
+        try {
+            const response = await fetch(url, {
+                method: 'PUT',
+                headers: headers || {"Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            return await response.json();
+        } catch (error) {
+            console.error('Erreur lors de la requête PUT:', error);
+            throw error;
+        }
+    }
 }

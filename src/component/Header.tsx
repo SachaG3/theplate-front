@@ -1,7 +1,7 @@
 'use client'
 import React from 'react';
 import Link from 'next/link';
-import {ArrowLeft, Map} from "lucide-react";
+import {ArrowLeft, User} from "lucide-react";
 
 function Header({returnLink, returnText, onBack}: { returnLink?: string, returnText: string, onBack?: () => void }) {
     const handleBackClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -26,8 +26,8 @@ function Header({returnLink, returnText, onBack}: { returnLink?: string, returnT
             <h2 className="text-lg font-semibold text-center flex-1">{returnText}</h2>
             <div
                 className="flex items-center justify-center p-2 rounded-full hover:bg-base-300 active:bg-base-100 transition-colors">
-                <Link href="/carte">
-                    <Map size={24}/>
+                <Link href="/user">
+                    <User size={24}/>
                 </Link>
             </div>
         </div>

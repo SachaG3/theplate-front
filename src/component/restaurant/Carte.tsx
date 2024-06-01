@@ -7,7 +7,7 @@ import {API_URLs} from '@/services/API_URLs';
 // Dynamic import for Map component
 const Map = dynamic(() => import('@/component/map/Map'), {ssr: false});
 
-function Page() {
+function Carte() {
     const [latitude, setLatitude] = useState(0);
     const [longitude, setLongitude] = useState(0);
     const [loading, setLoading] = useState(true);
@@ -74,4 +74,4 @@ function Page() {
     );
 }
 
-export default Page;
+export default Carte;
