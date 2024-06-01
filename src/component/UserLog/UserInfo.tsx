@@ -1,4 +1,5 @@
 // UserInfo.tsx
+'use client'
 import {useEffect, useState} from "react";
 import {Button, Input} from "@nextui-org/react";
 import axios from "axios";

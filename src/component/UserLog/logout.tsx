@@ -1,33 +1,27 @@
 'use client'
-import {useEffect, useState} from 'react';
-import {useRouter} from 'next/navigation';
-import {Button} from '@nextui-org/react';
-import {signOut} from "@/auth";
+import {signOut, useSession} from "next-auth/react";
+import {useRouter} from "next/navigation";
+import {Button} from "@nextui-org/react";
 
-const PageComponent = () => {
-    const [isBrowser, setIsBrowser] = useState(false);
+function Logout() {
+    const {data: session} = useSession();
     const router = useRouter();
 
-    useEffect(() => {
-        // Cette vérification garantit que nous sommes dans un environnement de navigateur
-        if (typeof window !== 'undefined') {
-            setIsBrowser(true);
-        }
-    }, []);
-
     const handleSignOut = () => {
-        if (isBrowser) {
-            signOut().then(() => {
-                router.push('/login');
-            });
-        }
+        signOut().then(() => {
+            router.push('/login');
+        });
     };
 
-    return (
-        <div className="flex justify-center mt-4">
-            <Button onClick={handleSignOut}>Déconnexion</Button>
-        </div>
-    );
-};
+    if (session) {
+        return (
+            <div className="flex justify-center mt-4">
+                <Button onClick={handleSignOut}>Déconnexion</Button>
+            </div>
+        );
+    }
 
-export default PageComponent;
+    return null;
+}
+
+export default Logout;
