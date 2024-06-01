@@ -11,7 +11,7 @@ export default function Home() {
                 <RestosSvg height={"400px"} width={"400px"}/>
                 <h1 className="text-xl md:text-2xl font-bold mb-2 text-center">Bienvenue sur notre site de
                     réservation</h1>
-                <p className="mb-4 text-center">Réservez facilement votre table dans l'un de nos restaurants
+                <p className="mb-4 text-center">Réservez facilement votre table dans l&apos;un de nos restaurants
                     partenaires.</p>
                 <div
                     className="flex flex-col w-full space-y-2 md:flex-row md:space-y-0 md:space-x-2 justify-center items-center">
